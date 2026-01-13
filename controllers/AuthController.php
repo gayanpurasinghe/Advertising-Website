@@ -2,9 +2,11 @@
 require_once '../config/database.php';
 require_once '../model/User.php';
 
-class AuthController {
-    
-    public function register() {
+class AuthController
+{
+
+    public function register()
+    {
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $username = $_POST['username'];
@@ -31,24 +33,48 @@ class AuthController {
             } else {
                 die("Registration failed.");
             }*/
-                $con = Database::connect();
-                $user = new User($username, $email, $password);
-                if ($user->save($con)) {
-                    echo "Registration successful.";
-                } else {
-                    die("Registration failed.");
-                }
+            $con = Database::connect();
+            $user = new User($username, $email, $password);
+            if ($user->save($con)) {
+                echo "Registration successful.";
+            } else {
+                die("Registration failed.");
+            }
         }
     }
 
-
     public function login() {
-        // Handle login logic here
-    }
-}  
-  $controller= new AuthController();
-    if(isset($_GET['action']) && $_GET['action'] === 'register') {
-        $controller->register();
-    }
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $username = $_POST['username'];
+            $password = $_POST['password'];
+
+            if (empty($username) || empty($password)) {
+                die("All fields are required.");
+            }
+
+            $con = Database::connect();
+            $userData = User::login($con, $username, $password);
+            if ($userData) {
+                session_start();
+                $_SESSION['user_id'] = $userData['id'];
+                $_SESSION['username'] = $userData['username'];
+                echo "Login successful.";
+                header("Location: ../views/ads/view_ads.php");
+            exit();
+            } else {
+                die("Invalid username or password.");
+            }
+        }
+}
+
+}
+$controller = new AuthController();
+if (isset($_GET['action']) && $_GET['action'] === 'register') {
+    $controller->register();
+}
+if (isset($_GET['action']) && $_GET['action'] === 'login') {
+    $controller->login();
+}
 
 ?>

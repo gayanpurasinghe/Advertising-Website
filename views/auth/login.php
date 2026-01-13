@@ -6,15 +6,15 @@
 </head>
 
 <body>
-    <form method="POST" action="/auth/login">
+    <form method="POST" action="../../controllers/AuthController.php?action=login">
         <div class="login-container">
             <h2>Login</h2>
 
             <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required minlength="5">
+            <input type="text" id="username" name="username" >
 
             <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required minlength="8">
+            <input type="password" id="password" name="password" >
 
             <button type="submit">Login</button>
             <button type="button" onclick="window.location.href='register.php'">Register</button>

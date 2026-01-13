@@ -4,18 +4,18 @@
     <link rel="stylesheet" type="text/css" href="register.css">
 </head>
 <body>
-    <form method="POST" action="/auth/register">
+    <form method="POST" action="../../controllers/AuthController.php?action=register">
         <div class="register-container">
             <h2>Register</h2>
 
             <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required minlength="5">
+            <input type="text" id="username" name="username" >
 
             <label for="email">Email:</label>
             <input type="email" id="email" name="email" required>
 
             <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required minlength="8">
+            <input type="password" id="password" name="password" >
 
             <button type="submit">Register</button>
             <button type="button" onclick="window.location.href='login.php'">Login</button>

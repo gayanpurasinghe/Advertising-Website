@@ -43,30 +43,59 @@ class AuthController
         }
     }
 
-    public function login() {
+
+    public function login()
+    {
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $username = $_POST['username'];
             $password = $_POST['password'];
+                session_start();
 
             if (empty($username) || empty($password)) {
-                die("All fields are required.");
+                $_SESSION['error'] = "empty_fields";
+                header("Location: ../views/auth/login.php");
+                exit();
             }
 
             $con = Database::connect();
             $userData = User::login($con, $username, $password);
             if ($userData) {
-                session_start();
                 $_SESSION['user_id'] = $userData['id'];
                 $_SESSION['username'] = $userData['username'];
-                echo "Login successful.";
+                //echo "Login successful.";
                 header("Location: ../views/ads/view_ads.php");
-            exit();
+                exit();
             } else {
-                die("Invalid username or password.");
+                session_start();
+                $_SESSION['error'] = "invalid_credentials";
+                header("Location: ../views/auth/login.php");
+                exit();
+
             }
         }
-}
+    }
+
+
+    public function showloginForm()
+    {
+        include '../views/auth/login.php';
+    }
+    public function showRegisterForm()
+    {
+        include '../views/auth/register.php';
+    }
+    public function logout()
+    {
+        session_start();
+        session_unset();
+        session_destroy();
+        header("Location: ../views/auth/login.php");
+        exit();
+    }
+
+
+
 
 }
 $controller = new AuthController();

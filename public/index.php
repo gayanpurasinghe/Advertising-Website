@@ -1,5 +1,4 @@
 <?php
-define('BASE_URL', 'http://localhost/dse/C-W/Advertising-Website/public/');
 define('APPROOT', dirname(__DIR__));
 ?>
 
@@ -8,8 +7,7 @@ define('APPROOT', dirname(__DIR__));
 <head>
     <title>BuySel.lk</title>
 
-    <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/layout/header.css">
-    <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/layout/footer.css">
+
 </head>
 <body>
 
@@ -17,6 +15,8 @@ define('APPROOT', dirname(__DIR__));
 
 <div class="content">
     <h2>Content</h2>
+    <p>Welcome to BuySel.lk! Browse and find amazing deals on a variety of products.</p>
+    <?php require_once APPROOT . '/app/views/ads/view_ads.php'; ?>
 </div>
 
 <?php require_once APPROOT . '/app/views/layout/footer.php'; ?>

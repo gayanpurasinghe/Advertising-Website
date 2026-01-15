@@ -3,7 +3,7 @@
 
 <head>
     <title>View Ads</title>
-    <link rel="stylesheet" type="text/css" href="..\..\..\public\assets\css\layout\footer.css">
+    <link rel="stylesheet" type="text/css" href="\dse\C-W\Advertising-Website\public\assets\css\layout\footer.css">
 </head>
 
 <body>

@@ -8,8 +8,8 @@ define('APPROOT', dirname(__DIR__));
 <head>
     <title>BuySel.lk</title>
 
-    <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/header.css">
-    <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/footer.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/layout/header.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/layout/footer.css">
 </head>
 <body>
 

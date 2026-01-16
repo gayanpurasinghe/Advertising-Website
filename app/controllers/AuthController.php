@@ -1,6 +1,6 @@
 <?php
 require_once '../config/database.php';
-require_once '../model/User.php';
+require_once '../models/User.php';
 
 class AuthController
 {
@@ -83,7 +83,7 @@ class AuthController
                 $_SESSION['user_id'] = $userData['id'];
                 $_SESSION['username'] = $userData['username'];
                 //echo "Login successful.";
-                header("Location: ../views/ads/view_ads.php");
+                header("Location: \dse\C-W\Advertising-Website\public\index.php");
                 exit();
             } else {
                 session_start();

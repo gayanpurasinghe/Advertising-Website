@@ -2,8 +2,13 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    
     background-color: #f0f0f0;
+    background-image: url("../images/BuySelLogo.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 80px;
+    padding: 10px;
+    background-position: left center;
 }
 .head .logo img {
     width: 150px;
@@ -17,7 +22,10 @@
     margin-left: 20px;
     font-family: sans-serif;
     text-decoration: solid;
-    text-align: left;
+}
+.head .name a{
+    text-decoration: none;
+    color: black;
 }
 .head .nav a{
     color: black;
@@ -35,7 +43,10 @@
     
     text-decoration-color: black;
 }
-.head .name a{
-    text-decoration: none;
+.head .nav span{
     color: black;
+    padding: 14px 20px;
+    text-decoration: none;
+    text-align: center;
 }
+

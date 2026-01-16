@@ -22,7 +22,8 @@
     $currentUserId = $_SESSION['user_id'] ?? null;
     $ads = [];
     if ($currentUserId) {
-        $ads = Advertisement::getOthersAds($con, $currentUserId);
+        $userRole = $_SESSION['user_role'] ?? 0;
+        $ads = Advertisement::getOthersAds($con, $currentUserId, $userRole);
     }
     ?>
 

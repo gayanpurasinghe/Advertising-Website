@@ -82,6 +82,7 @@ class AuthController
             if ($userData) {
                 $_SESSION['user_id'] = $userData['id'];
                 $_SESSION['username'] = $userData['username'];
+                $_SESSION['user_role'] = $userData['role'];
                 //echo "Login successful.";
                 header("Location: \dse\C-W\Advertising-Website\public\index.php");
                 exit();

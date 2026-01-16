@@ -3,12 +3,13 @@
 
 <head>
     <title>View Ads</title>
+
     <link rel="stylesheet" type="text/css" href="\dse\C-W\Advertising-Website\public\assets\css\ads\view_ads.css">
 </head>
 
 <body>
 
-    <?php 
+    <?php
     if (session_status() == PHP_SESSION_NONE) {
         session_start();
     }
@@ -29,7 +30,10 @@
 
     <!--?php include '../layout/header.php'; ?-->
 
-    <h2>Other Users' Advertisements</h2>
+    <div class="content">
+        <p>Welcome to BuySel.lk! Browse and find amazing deals on a variety of products.</p>
+    </div>
+
 
     <div class="ad-list">
         <?php if (empty($ads)): ?>
@@ -41,9 +45,12 @@
                     <p><?php echo htmlspecialchars($ad['description']); ?></p>
                     <p><strong>Price:</strong> Rs:<?php echo htmlspecialchars($ad['price']); ?></p>
                     <?php if (!empty($ad['image_path'])): ?>
-                        <img src="../../../C-W/Advertising-Website/public/<?php echo htmlspecialchars($ad['image_path']); ?>" alt="Ad Image" style="max-width: 200px;">
+                        <img src="../../../C-W/Advertising-Website/public/<?php echo htmlspecialchars($ad['image_path']); ?>"
+                            alt="Ad Image" style="max-width: 200px;">
                     <?php endif; ?>
-                    <p>Posted by: <?php echo htmlspecialchars($ad['username']); ?> on <?php echo htmlspecialchars($ad['created_at']); ?></p>
+                    <p>Posted by: <?php echo htmlspecialchars($ad['username']); ?> on
+                        <?php echo htmlspecialchars($ad['created_at']); ?>
+                    </p>
                 </div>
             <?php endforeach; ?>
         <?php endif; ?>

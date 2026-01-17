@@ -7,6 +7,8 @@ define('APPROOT', dirname(__DIR__));
 
 <head>
     <title>BuySel.lk</title>
+    <link rel="stylesheet" type="text/css" href="\dse\C-W\Advertising-Website\public\assets\css\home\home.css">
+    <link rel="stylesheet" type="text/css" href="\dse\C-W\Advertising-Website\public\assets\css\ads\view_ads.css">
 
 
 </head>
@@ -20,7 +22,7 @@ define('APPROOT', dirname(__DIR__));
 
 
 
-    <?php require_once APPROOT . '/app/views/ads/view_ads.php'; ?>
+    <?php require_once APPROOT . '/app/views/home/home.php'; ?>
 
 
 

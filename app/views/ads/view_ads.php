@@ -11,9 +11,9 @@
 
     <?php include '../layout/header.php'; ?>
 
-    <div class="content">
+    <!--div class="content">
         <p>Welcome to BuySel.lk! Browse and find amazing deals on a variety of products.</p>
-    </div>
+    </div-->
 
     <?php include __DIR__ . '/ad_list_component.php'; ?>
 

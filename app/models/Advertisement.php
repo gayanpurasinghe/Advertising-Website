@@ -38,23 +38,44 @@ class Advertisement
         $result = $stmt->get_result();
         return $result->fetch_all(MYSQLI_ASSOC);
     }*/
-    public static function getOthersAds($con, $currentUserId, $userRole)
+    public static function getOthersAds($con, $currentUserId, $userRole, $searchQuery = null)
     {
-
         $sql = "SELECT a.*, u.username 
             FROM advertisements a 
             JOIN users u ON a.user_id = u.id";
 
-        if ($userRole == 1) {
-            $sql .= " WHERE a.status IN (0, 1)";
-            $sql .= " ORDER BY a.created_at DESC";
-            $stmt = $con->prepare($sql);
+        $params = [];
+        $types = "";
+        $whereClauses = [];
 
+        // Role restriction
+        if ($userRole == 1) {
+            $whereClauses[] = "a.status IN (0, 1)";
         } else {
-            $sql .= " WHERE a.user_id != ? AND a.status = 1";
-            $sql .= " ORDER BY a.created_at DESC";
-            $stmt = $con->prepare($sql);
-            $stmt->bind_param("i", $currentUserId);
+            $whereClauses[] = "a.user_id != ?";
+            $whereClauses[] = "a.status = 1";
+            $params[] = $currentUserId;
+            $types .= "i";
+        }
+
+        // Search filter
+        if ($searchQuery) {
+            $whereClauses[] = "(a.title LIKE ? OR u.username LIKE ?)";
+            $searchTerm = "%" . $searchQuery . "%";
+            $params[] = $searchTerm;
+            $params[] = $searchTerm;
+            $types .= "ss";
+        }
+
+        if (!empty($whereClauses)) {
+            $sql .= " WHERE " . implode(" AND ", $whereClauses);
+        }
+
+        $sql .= " ORDER BY a.created_at DESC";
+
+        $stmt = $con->prepare($sql);
+        if (!empty($params)) {
+            $stmt->bind_param($types, ...$params);
         }
 
         $stmt->execute();

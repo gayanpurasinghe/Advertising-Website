@@ -8,20 +8,22 @@ require_once __DIR__ . '/../../models/Advertisement.php';
 
 $con = Database::connect();
 $currentUserId = $_SESSION['user_id'] ?? null;
-$ads = [];
-if ($currentUserId) {
+$userRole = $_SESSION['user_role'] ?? 0;
 
-    $userRole = $_SESSION['user_role'] ?? 0;
-    $ads = Advertisement::getOthersAds($con, $currentUserId, $userRole);
-} else {
-    $userRole = 0;
+if (!$currentUserId) {
     $currentUserId = 0;
-    $ads = Advertisement::getOthersAds($con, $currentUserId, $userRole);
 }
+
+$searchQuery = $_GET['query'] ?? null;
+$ads = Advertisement::getOthersAds($con, $currentUserId, $userRole, $searchQuery);
 ?>
 
 <div class="content" style="background: transparent; border: none; padding: 0; margin-bottom: 30px;">
-    <p>Welcome to BuySel.lk! Browse and find amazing deals on a variety of products.</p>
+    <?php if ($searchQuery): ?>
+        <p>Search results for "<strong><?php echo htmlspecialchars($searchQuery); ?></strong>":</p>
+    <?php else: ?>
+        <p>Welcome to BuySel.lk! Browse and find amazing deals on a variety of products.</p>
+    <?php endif; ?>
 </div>
 
 <div class="ad-list">
@@ -31,7 +33,8 @@ if ($currentUserId) {
         <?php foreach ($ads as $ad): ?>
             <div class="ad-item">
                 <h3>
-                    <a href="/dse/C-W/Advertising-Website/app/views/ads/view_ad.php?id=<?php echo $ad['id']; ?>" style="text-decoration: none; color: inherit;">
+                    <a href="/dse/C-W/Advertising-Website/app/views/ads/view_ad.php?id=<?php echo $ad['id']; ?>"
+                        style="text-decoration: none; color: inherit;">
                         <?php echo htmlspecialchars($ad['title']); ?>
                     </a>
                 </h3>

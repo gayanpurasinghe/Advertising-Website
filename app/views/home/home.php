@@ -19,7 +19,7 @@
 
 
 <div class="container">
-    <h2 class="section-title">Fresh Recommendations</h2>
+    <!--h2 class="section-title">Fresh Recommendations</h2-->
 
     <?php include __DIR__ . '/../ads/ad_list_component.php'; ?>
 </div>

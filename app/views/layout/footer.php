@@ -30,7 +30,7 @@
                 <h3>Contact</h3>
                 <p>Email: support@buysel.lk</p>
                 <p>Phone: +94 11 234 5678</p>
-                <p>Colombo, Sri Lanka</p>
+                <p>Address: No 32, Galle Road, Colombo, Sri Lanka</p>
             </div>
         </div>
         <div class="footer-bottom">

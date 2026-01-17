@@ -28,7 +28,7 @@
     }
     ?>
 
-    <!--?php include '../layout/header.php'; ?-->
+    <?php include '../layout/header.php'; ?>
 
     <div class="content">
         <p>Welcome to BuySel.lk! Browse and find amazing deals on a variety of products.</p>
@@ -45,8 +45,8 @@
                     <p><?php echo htmlspecialchars($ad['description']); ?></p>
                     <p><strong>Price:</strong> Rs:<?php echo htmlspecialchars($ad['price']); ?></p>
                     <?php if (!empty($ad['image_path'])): ?>
-                        <img src="../../../C-W/Advertising-Website/public/<?php echo htmlspecialchars($ad['image_path']); ?>"
-                            alt="Ad Image" style="max-width: 200px;">
+                        <img src="/dse/C-W/Advertising-Website/public/<?php echo htmlspecialchars($ad['image_path']); ?>"
+                            alt="Ad Image">
                     <?php endif; ?>
                     <p>Posted by: <?php echo htmlspecialchars($ad['username']); ?> on
                         <?php echo htmlspecialchars($ad['created_at']); ?>
@@ -55,6 +55,8 @@
             <?php endforeach; ?>
         <?php endif; ?>
     </div>
+
+    <?php include '../layout/footer.php'; ?>
 
 </body>
 

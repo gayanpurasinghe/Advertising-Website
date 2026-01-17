@@ -7,7 +7,11 @@
 </head>
 
 <body>
-    <?php session_start(); ?>
+    <?php
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
+    ?>
     <div class="head">
         <div class="logo">
             <a href="\dse\C-W\Advertising-Website\public\index.php"><img
@@ -26,11 +30,11 @@
         <div class="nav">
             <?php if (isset($_SESSION['username'])): ?>
                 <span>Welcome, <?php echo htmlspecialchars($_SESSION['username']); ?></span>
+                <a href="\dse\C-W\Advertising-Website\app\views\ads\create_ad.php">Create Ad</a>
+                <a href="\dse\C-W\Advertising-Website\app\views\auth\logout.php">Logout</a>
+            <?php else: ?>
+                <a href="\dse\C-W\Advertising-Website\app\views\auth\login.php">Login</a>
             <?php endif; ?>
-            <!--a href="..\..\views\users\view_profile.php">Profile</a-->
-            <a href="\dse\C-W\Advertising-Website\app\views\ads\create_ad.php">Create Ad</a>
-            <!--a href="..\..\views\ads\view_ads.php" class="active">View Ads</a-->
-            <a href="\dse\C-W\Advertising-Website\app\views\auth\login.php">Logout</a>
         </div>
 
 

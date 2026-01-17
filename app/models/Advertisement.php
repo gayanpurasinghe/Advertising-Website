@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__.'/../config/database.php';
+require_once __DIR__ . '/../config/database.php';
 
 class Advertisement
 {
@@ -30,23 +30,70 @@ class Advertisement
         return $stmt->execute();
     }
 
-    public static function getOthersAds($con, $currentUserId)
+    /*public static function getOthersAds($con, $currentUserId)
     {
         $stmt = $con->prepare("SELECT a.*, u.username FROM advertisements a JOIN users u ON a.user_id = u.id WHERE a.user_id != ? AND a.status = 0 ORDER BY a.created_at DESC");
         $stmt->bind_param("i", $currentUserId);
         $stmt->execute();
         $result = $stmt->get_result();
         return $result->fetch_all(MYSQLI_ASSOC);
+    }*/
+public static function getOthersAds($con, $currentUserId, $userRole)
+{
+
+    $sql = "SELECT a.*, u.username 
+            FROM advertisements a 
+            JOIN users u ON a.user_id = u.id";
+
+    if ($userRole == 1) {
+        $sql .= " WHERE a.status IN (0, 1)";
+        $sql .= " ORDER BY a.created_at DESC";
+        $stmt = $con->prepare($sql);
+        
+    } else {
+        $sql .= " WHERE a.user_id != ? AND a.status = 1";
+        $sql .= " ORDER BY a.created_at DESC";
+        $stmt = $con->prepare($sql);
+        $stmt->bind_param("i", $currentUserId);
     }
 
+    $stmt->execute();
+    $result = $stmt->get_result();
+    return $result->fetch_all(MYSQLI_ASSOC);
+}
+
     // Getters
-    public function getId() { return $this->id; }
-    public function getUserId() { return $this->user_id; }
-    public function getTitle() { return $this->title; }
-    public function getDescription() { return $this->description; }
-    public function getPrice() { return $this->price; }
-    public function getImagePath() { return $this->image_path; }
-    public function getStatus() { return $this->status; }
-    public function getCreatedAt() { return $this->created_at; }
+    public function getId()
+    {
+        return $this->id;
+    }
+    public function getUserId()
+    {
+        return $this->user_id;
+    }
+    public function getTitle()
+    {
+        return $this->title;
+    }
+    public function getDescription()
+    {
+        return $this->description;
+    }
+    public function getPrice()
+    {
+        return $this->price;
+    }
+    public function getImagePath()
+    {
+        return $this->image_path;
+    }
+    public function getStatus()
+    {
+        return $this->status;
+    }
+    public function getCreatedAt()
+    {
+        return $this->created_at;
+    }
 }
 ?>

@@ -1,30 +1,36 @@
 <html>
+
 <head>
     <title>Create Ad</title>
-    <link rel="stylesheet" type="text/css" href="/dse/C-W/Advertising-Website/public/assets/css/ads/create_ad.css">
-</head>
+
+    <head>
+        <title>Create Ad</title>
+        <link rel="stylesheet" type="text/css" href="<?php echo URLROOT; ?>/assets/css/ads/create_ad.css">
+    </head>
 
 <body>
-    <?php 
+    <?php
     if (session_status() == PHP_SESSION_NONE) {
         session_start();
     }
+    require_once __DIR__ . '/../../config/config.php';
     ?>
 
     <div class="create-ad-container">
-        <a href="/dse/C-W/Advertising-Website/public/index.php" class="close-btn">&times;</a>
+        <a href="<?php echo URLROOT; ?>/index.php" class="close-btn">&times;</a>
         <h2>Create a New Advertisement</h2>
 
         <?php if (isset($_SESSION['error'])): ?>
             <p style="color: red;">
-                <?php 
+                <?php
                 echo htmlspecialchars($_SESSION['error']);
-                unset($_SESSION['error']); 
+                unset($_SESSION['error']);
                 ?>
             </p>
         <?php endif; ?>
 
-        <form method="POST" action="../../controllers/AdController.php?action=create" enctype="multipart/form-data">
+        <form method="POST" action="<?php echo URLROOT; ?>/../app/controllers/AdController.php?action=create"
+            enctype="multipart/form-data">
             <label for="title">Advertisement Title:</label>
             <input type="text" id="title" name="title" required>
 
@@ -47,20 +53,21 @@
             <span class="close-btn" id="closeBtn" onclick="closePopup()">&times;</span>
             <h2>Advertisement Created Successfully!</h2>
             <p id="popupMessage">Your advertisement has been created and is pending approval.</p>
-            <a href="/dse/C-W/Advertising-Website/public/index.php" class="home-link">Go to Home</a>
+            <a href="<?php echo URLROOT; ?>/index.php" class="home-link">Go to Home</a>
         </div>
     </div>
 
-    <script src="/dse/C-W/Advertising-Website/public/assets/js/popup.js"></script>
+    <script src="<?php echo URLROOT; ?>/assets/js/popup.js"></script>
 
     <?php if (isset($_SESSION['success'])): ?>
         <script>
             showPopup("<?php echo $_SESSION['success']; ?>");
         </script>
-        <?php 
-        unset($_SESSION['success']); 
+        <?php
+        unset($_SESSION['success']);
         ?>
     <?php endif; ?>
 
 </body>
+
 </html>

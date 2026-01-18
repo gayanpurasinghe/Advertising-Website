@@ -4,6 +4,7 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 require_once __DIR__ . '/../../models/Advertisement.php';
 require_once __DIR__ . '/../../config/database.php';
+require_once __DIR__ . '/../../config/config.php';
 
 $con = Database::connect();
 $adId = isset($_GET['id']) ? $_GET['id'] : null;
@@ -29,7 +30,10 @@ $comments = Advertisement::getComments($con, $adId);
     <title>
         <?php echo htmlspecialchars($ad['title']); ?> - BuySel.lk
     </title>
-    <link rel="stylesheet" href="/dse/C-W/Advertising-Website/public/assets/css/ads/view_ad.css">
+    <title>
+        <?php echo htmlspecialchars($ad['title']); ?> - BuySel.lk
+    </title>
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/ads/view_ad.css">
 </head>
 
 <body>
@@ -38,7 +42,7 @@ $comments = Advertisement::getComments($con, $adId);
 
     <div class="container">
         <div class="ad-header">
-            <img src="/dse/C-W/Advertising-Website/public/<?php echo htmlspecialchars($ad['image_path']); ?>"
+            <img src="<?php echo URLROOT; ?>/<?php echo htmlspecialchars($ad['image_path']); ?>"
                 alt="<?php echo htmlspecialchars($ad['title']); ?>">
         </div>
 
@@ -73,15 +77,14 @@ $comments = Advertisement::getComments($con, $adId);
                 <h3 class="section-title">Comments</h3>
 
                 <?php if (isset($_SESSION['user_id'])): ?>
-                    <form
-                        action="/dse/C-W/Advertising-Website/app/controllers/AdInteractionController.php?action=addComment"
+                    <form action="<?php echo URLROOT; ?>/../app/controllers/AdInteractionController.php?action=addComment"
                         method="POST" class="comment-form">
                         <input type="hidden" name="ad_id" value="<?php echo $ad['id']; ?>">
                         <textarea name="comment" placeholder="Write a comment..." required></textarea>
                         <button type="submit" class="btn btn-primary">Post Comment</button>
                     </form>
                 <?php else: ?>
-                    <p><a href="/dse/C-W/Advertising-Website/app/views/auth/login.php">Login</a> to post a comment.</p>
+                    <p><a href="<?php echo URLROOT; ?>/../app/views/auth/login.php">Login</a> to post a comment.</p>
                 <?php endif; ?>
 
                 <ul class="comment-list">
@@ -112,7 +115,7 @@ $comments = Advertisement::getComments($con, $adId);
         <div class="modal-content">
             <span class="close">&times;</span>
             <h2>Report Advertisement</h2>
-            <form action="/dse/C-W/Advertising-Website/app/controllers/AdInteractionController.php?action=reportAd"
+            <form action="<?php echo URLROOT; ?>/../app/controllers/AdInteractionController.php?action=reportAd"
                 method="POST">
                 <input type="hidden" name="ad_id" value="<?php echo $ad['id']; ?>">
                 <label>Reason for reporting:</label>
@@ -131,7 +134,7 @@ $comments = Advertisement::getComments($con, $adId);
 
         btn.onclick = function () {
             <?php if (!isset($_SESSION['user_id'])): ?>
-                window.location.href = "/dse/C-W/Advertising-Website/app/views/auth/login.php";
+                window.location.href = "<?php echo URLROOT; ?>/../app/views/auth/login.php";
             <?php else: ?>
                 modal.style.display = "block";
             <?php endif; ?>

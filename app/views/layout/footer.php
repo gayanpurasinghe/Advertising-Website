@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html>
 
+<?php require_once __DIR__ . '/../../config/config.php'; ?>
+
 <head>
     <title>View Ads</title>
-    <link rel="stylesheet" type="text/css" href="/dse/C-W/Advertising-Website/public/assets/css/layout/footer.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo URLROOT; ?>/assets/css/layout/footer.css">
 </head>
 
 <body>
     <div class="scroll-top">
-        <a href="#top"><img src="/dse/C-W/Advertising-Website/public/assets/images/Scroll Up.png" alt="Scroll to Top"
+        <a href="#top"><img src="<?php echo URLROOT; ?>/assets/images/Scroll Up.png" alt="Scroll to Top"
                 class="up-arrow-icon"></a>
     </div>
 
@@ -21,7 +23,7 @@
             </div>
             <div class="footer-section">
                 <h3>Quick Links</h3>
-                <a href="/dse/C-W/Advertising-Website/public/index.php">Home</a>
+                <a href="<?php echo URLROOT; ?>/index.php">Home</a>
                 <a href="#">About Us</a>
                 <a href="#">Contact Support</a>
                 <a href="#">Privacy Policy</a>

@@ -33,13 +33,13 @@ class AuthController
             } else {
                 die("Registration failed.");
             }*/
-                session_start();
+            session_start();
             if (empty($username) || empty($email) || empty($password)) {
                 $_SESSION['error'] = "empty_fields";
                 header("Location: ../views/auth/register.php");
                 exit();
             }
-                        if (strlen($username) < 5) {
+            if (strlen($username) < 5) {
                 die("Username must be at least 5 characters long.");
             }
             if (strlen($password) < 8) {
@@ -69,7 +69,7 @@ class AuthController
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $username = $_POST['username'];
             $password = $_POST['password'];
-                session_start();
+            session_start();
 
             if (empty($username) || empty($password)) {
                 $_SESSION['error'] = "empty_fields";
@@ -84,7 +84,7 @@ class AuthController
                 $_SESSION['username'] = $userData['username'];
                 $_SESSION['user_role'] = $userData['role'];
                 //echo "Login successful.";
-                header("Location: \dse\C-W\Advertising-Website\public\index.php");
+                header("Location: \dse/CW-MyGit\Advertising-Website\public\index.php");
                 exit();
             } else {
                 session_start();

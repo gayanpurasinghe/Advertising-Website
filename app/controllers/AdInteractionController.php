@@ -19,7 +19,7 @@ class AdInteractionController
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (!isset($_SESSION['user_id'])) {
-                header("Location: /dse/C-W/Advertising-Website/app/views/auth/login.php");
+                header("Location: " . URLROOT . "/../app/views/auth/login.php");
                 exit;
             }
 
@@ -31,7 +31,7 @@ class AdInteractionController
                 Advertisement::addComment($this->con, $adId, $userId, $comment);
             }
             // Redirect back to ad view
-            header("Location: /dse/C-W/Advertising-Website/app/views/ads/view_ad.php?id=" . $adId);
+            header("Location: " . URLROOT . "/../app/views/ads/view_ad.php?id=" . $adId);
             exit;
         }
     }
@@ -40,7 +40,7 @@ class AdInteractionController
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (!isset($_SESSION['user_id'])) {
-                header("Location: /dse/C-W/Advertising-Website/app/views/auth/login.php");
+                header("Location: " . URLROOT . "/../app/views/auth/login.php");
                 exit;
             }
 
@@ -51,7 +51,7 @@ class AdInteractionController
             if (!empty($reason)) {
                 Advertisement::reportAd($this->con, $adId, $userId, $reason);
             }
-            header("Location: /dse/C-W/Advertising-Website/app/views/ads/view_ad.php?id=" . $adId . "&reported=1");
+            header("Location: " . URLROOT . "/../app/views/ads/view_ad.php?id=" . $adId . "&reported=1");
             exit;
         }
     }

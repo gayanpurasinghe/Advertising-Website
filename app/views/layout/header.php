@@ -3,7 +3,7 @@
 
 <head>
     <title>Header</title>
-    <link rel="stylesheet" type="text/css" href="/dse/C-W/Advertising-Website/public/assets/css/layout/header.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo URLROOT; ?>/assets/css/layout/header.css">
 </head>
 
 <body>
@@ -11,11 +11,11 @@
     if (session_status() == PHP_SESSION_NONE) {
         session_start();
     }
+    require_once __DIR__ . '/../../config/config.php';
     ?>
     <div class="head">
-        <a href="/dse/C-W/Advertising-Website/public/index.php" class="logo-section">
-            <img src="/dse/C-W/Advertising-Website/public/assets/images/BuySelLogo.png" alt="BuySel.lk"
-                class="home-icon">
+        <a href="<?php echo URLROOT; ?>/index.php" class="logo-section">
+            <img src="<?php echo URLROOT; ?>/assets/images/BuySelLogo.png" alt="BuySel.lk" class="home-icon">
             <h1 class="brand-name">BuySel.lk</h1>
         </a>
 
@@ -24,14 +24,14 @@
                 <span>Hi, <?php echo htmlspecialchars($_SESSION['username']); ?></span>
 
                 <?php if (isset($_SESSION['user_role']) && $_SESSION['user_role'] == 1): ?>
-                    <a href="/dse/C-W/Advertising-Website/app/views/admin/dashboard.php" class="btn-admin">Admin Panel</a>
+                    <a href="<?php echo URLROOT; ?>/../app/views/admin/dashboard.php" class="btn-admin">Admin Panel</a>
                 <?php endif; ?>
 
-                <a href="/dse/C-W/Advertising-Website/app/views/ads/create_ad.php" class="btn-cta">Create Ad</a>
-                <a href="/dse/C-W/Advertising-Website/app/views/auth/logout.php">Logout</a>
+                <a href="<?php echo URLROOT; ?>/../app/views/ads/create_ad.php" class="btn-cta">Create Ad</a>
+                <a href="<?php echo URLROOT; ?>/../app/views/auth/logout.php">Logout</a>
             <?php else: ?>
-                <a href="/dse/C-W/Advertising-Website/app/views/auth/login.php">Login</a>
-                <a href="/dse/C-W/Advertising-Website/app/views/auth/register.php" class="btn-cta">Register</a>
+                <a href="<?php echo URLROOT; ?>/../app/views/auth/login.php">Login</a>
+                <a href="<?php echo URLROOT; ?>/../app/views/auth/register.php" class="btn-cta">Register</a>
             <?php endif; ?>
         </div>
     </div>

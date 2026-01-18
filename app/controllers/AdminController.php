@@ -17,7 +17,7 @@ class AdminController
         $this->con = Database::connect();
         // checking current user is really an admin?
         if (!isset($_SESSION['user_role']) || $_SESSION['user_role'] != 1) {
-            header("Location: /dse/C-W/Advertising-Website/public/index.php");
+            header("Location: " . URLROOT . "/index.php");
             exit;
         }
     }
@@ -46,7 +46,7 @@ class AdminController
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             User::updateStatus($this->con, $userId, 'banned');
-            header("Location: /dse/C-W/Advertising-Website/app/views/admin/users.php");
+            header("Location: " . URLROOT . "/../app/views/admin/users.php");
         }
     }
 
@@ -54,7 +54,7 @@ class AdminController
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             User::updateStatus($this->con, $userId, 'active');
-            header("Location: /dse/C-W/Advertising-Website/app/views/admin/users.php");
+            header("Location: " . URLROOT . "/../app/views/admin/users.php");
         }
     }
 
@@ -78,7 +78,7 @@ class AdminController
             $stmt = $this->con->prepare("UPDATE reports SET status = 'dismissed' WHERE id = ?");
             $stmt->bind_param("i", $reportId);
             $stmt->execute();
-            header("Location: /dse/C-W/Advertising-Website/app/views/admin/reports.php");
+            header("Location: " . URLROOT . "/../app/views/admin/reports.php");
         }
     }
 
@@ -90,7 +90,7 @@ class AdminController
             $stmt->bind_param("i", $adId);
             $stmt->execute();
 
-            header("Location: /dse/C-W/Advertising-Website/app/views/admin/reports.php");
+            header("Location: " . URLROOT . "/../app/views/admin/reports.php");
         }
     }
 
@@ -104,7 +104,7 @@ class AdminController
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             Advertisement::updateStatus($this->con, $adId, $status);
-            header("Location: /dse/C-W/Advertising-Website/app/views/admin/manage_ads.php");
+            header("Location: " . URLROOT . "/../app/views/admin/manage_ads.php");
         }
     }
 }

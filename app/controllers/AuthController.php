@@ -13,40 +13,41 @@ class AuthController
             $email = $_POST['email'];
             $password = $_POST['password'];
 
-            /*if (empty($username) || empty($email) || empty($password)) {
-                die("All fields are required.");
-            }
-            if (strlen($username) < 5) {
-                die("Username must be at least 5 characters long.");
-            }
-            if (strlen($password) < 8) {
-                die("Password must be at least 8 characters long.");
-            }
-            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                die("Invalid email format.");
-            }
+            /*
             if($this->userModel->findByUsername($username)) {
                 die("Username already exists.");
-            }
-            if($this->userModel->register($username, $email, $password)) {
-                echo "Registration successful.";
-            } else {
-                die("Registration failed.");
             }*/
-            session_start();
             if (empty($username) || empty($email) || empty($password)) {
+                if (session_status() == PHP_SESSION_NONE) {
+                    session_start();
+                }
                 $_SESSION['error'] = "empty_fields";
                 header("Location: ../views/auth/register.php");
                 exit();
             }
             if (strlen($username) < 5) {
-                die("Username must be at least 5 characters long.");
+                if (session_status() == PHP_SESSION_NONE) {
+                    session_start();
+                }
+                $_SESSION['error'] = "username_too_short";
+                header("Location: ../views/auth/register.php");
+                exit();
             }
             if (strlen($password) < 8) {
-                die("Password must be at least 8 characters long.");
+                if (session_status() == PHP_SESSION_NONE) {
+                    session_start();
+                }
+                $_SESSION['error'] = "password_too_short";
+                header("Location: ../views/auth/register.php");
+                exit();
             }
             if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                die("Invalid email format.");
+                if (session_status() == PHP_SESSION_NONE) {
+                    session_start();
+                }
+                $_SESSION['error'] = "invalid_email";
+                header("Location: ../views/auth/register.php");
+                exit();
             }
 
 
@@ -55,9 +56,19 @@ class AuthController
             $con = Database::connect();
             $user = new User($username, $email, $password);
             if ($user->save($con)) {
-                echo "Registration successful.";
+                if (session_status() == PHP_SESSION_NONE) {
+                    session_start();
+                }
+                $_SESSION['success'] = "Registration successful.";
+                header("Location: ../views/auth/login.php");
+                exit();
             } else {
-                die("Registration failed.");
+                if (session_status() == PHP_SESSION_NONE) {
+                    session_start();
+                }
+                $_SESSION['error'] = "Registration failed.";
+                header("Location: ../views/auth/register.php");
+                exit();
             }
         }
     }
@@ -84,7 +95,7 @@ class AuthController
                 $_SESSION['username'] = $userData['username'];
                 $_SESSION['user_role'] = $userData['role'];
                 //echo "Login successful.";
-                header("Location: \dse/CW-MyGit\Advertising-Website\public\index.php");
+                header("Location: \dse\CW-MyGit\Advertising-Website\public\index.php");
                 exit();
             } else {
                 session_start();

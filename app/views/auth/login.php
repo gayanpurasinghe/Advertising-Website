@@ -2,6 +2,7 @@
 session_start();
 $error = $_SESSION['error'] ?? null;
 unset($_SESSION['error']);
+require_once __DIR__ . '/../../config/config.php';
 ?>
 
 <!DOCTYPE html>
@@ -9,7 +10,7 @@ unset($_SESSION['error']);
 
 <head>
     <title>Login</title>
-    <link rel="stylesheet" type="text/css" href="\dse/CW-MyGit\Advertising-Website\public\assets\css\auth\login.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo URLROOT; ?>/assets/css/auth/login.css">
 </head>
 
 <body>
@@ -31,11 +32,10 @@ unset($_SESSION['error']);
     <?php endif; ?>
 
 
-    <form method="POST" action="\dse/CW-MyGit\Advertising-Website\app\controllers\AuthController.php?action=login">
+    <form method="POST" action="<?php echo URLROOT; ?>/../app/controllers/AuthController.php?action=login">
         <div class="login-container">
             <div class="logo" align="center">
-                <img src="\dse/CW-MyGit\Advertising-Website\public\assets\images\BuySelLogo.png" alt="Logo"
-                    class="logo-image">
+                <img src="<?php echo URLROOT; ?>/assets/images/BuySelLogo.png" alt="Logo" class="logo-image">
             </div>
             <h2>Login</h2>
 

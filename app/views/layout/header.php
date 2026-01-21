@@ -13,6 +13,9 @@
     }
     require_once __DIR__ . '/../../config/config.php';
     ?>
+    <script>
+        window.URLROOT = "<?php echo URLROOT; ?>";
+    </script>
     <div class="head">
         <a href="<?php echo URLROOT; ?>/index.php" class="logo-section">
             <img src="<?php echo URLROOT; ?>/assets/images/BuySelLogo.png" alt="BuySel.lk" class="home-icon">
@@ -28,7 +31,7 @@
                 <?php endif; ?>
 
                 <a href="<?php echo URLROOT; ?>/../app/views/ads/create_ad.php" class="btn-cta">Create Ad</a>
-                <a href="<?php echo URLROOT; ?>/../app/views/auth/logout.php">Logout</a>
+                <a href="javascript:void(0)" onclick="confirmLogout()">Logout</a>
             <?php else: ?>
                 <a href="<?php echo URLROOT; ?>/../app/views/auth/login.php">Login</a>
                 <a href="<?php echo URLROOT; ?>/../app/views/auth/register.php" class="btn-cta">Register</a>

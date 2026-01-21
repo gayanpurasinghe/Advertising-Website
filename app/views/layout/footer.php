@@ -42,6 +42,9 @@
         </div>
     </footer>
 
+    <script src="<?php echo URLROOT; ?>/assets/js/popup.js"></script>
+    <script src="<?php echo URLROOT; ?>/assets/js/generic.js"></script>
+
 </body>
 
 </html>

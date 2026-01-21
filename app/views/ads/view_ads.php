@@ -4,7 +4,7 @@
 <head>
     <title>View Ads</title>
 
-    <link rel="stylesheet" type="text/css" href="\dse/CW-MyGit\Advertising-Website\public\assets\css\ads\view_ads.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo URLROOT; ?>/assets/css/ads/view_ads.css">
 </head>
 
 <body>

@@ -1,4 +1,4 @@
-function closePopup() {
+/*function closePopup() {
     const popup = document.getElementById('sucessModel');
     if (popup) {
         popup.style.display = 'none';
@@ -17,7 +17,7 @@ function showPopup(message) {
     else {
         console.error('Popup element not found');
     }
-}
+}*/
 
 const errorMessages = {
     "invalid_credentials": {

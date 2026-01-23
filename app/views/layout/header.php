@@ -4,6 +4,7 @@
 <head>
     <title>Header</title>
     <link rel="stylesheet" type="text/css" href="<?php echo URLROOT; ?>/assets/css/layout/header.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo URLROOT; ?>/assets/css/layout/popup.css">
 </head>
 
 <body>

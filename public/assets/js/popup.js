@@ -55,6 +55,11 @@ const errorMessages = {
         message: "An unknown error occurred.",
         type: "error"
     },
+    "passwords_mismatch": {
+        title: "Password Mismatch",
+        message: "Passwords do not match.",
+        type: "error"
+    },
     "registration_success": {
         title: "Success",
         message: "Registration successful. Please login.",

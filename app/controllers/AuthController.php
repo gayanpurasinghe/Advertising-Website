@@ -1,6 +1,7 @@
 <?php
 require_once '../config/database.php';
 require_once '../models/User.php';
+require_once '../config/config.php';
 
 class AuthController
 {
@@ -96,7 +97,7 @@ class AuthController
                 $_SESSION['user_role'] = $userData['role'];
                 $_SESSION['success'] = "Login successful.";
                 //echo "Login successful.";
-                header("Location: \dse\CW-MyGit\Advertising-Website\public\index.php");
+                header("Location: " . URLROOT . "/index.php");
                 exit();
             } else {
                 session_start();

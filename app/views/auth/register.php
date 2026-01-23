@@ -2,23 +2,23 @@
 session_start();
 $error = $_SESSION['error'] ?? null;
 unset($_SESSION['error']);
+require_once __DIR__ . '/../../config/config.php';
 ?>
 <!DOCTYPE html>
 <html>
 
 <head>
     <title>Register</title>
-    <link rel="stylesheet" type="text/css" href="/dse/CW-MyGit/Advertising-Website/public/assets/css/auth/register.css">
-    <link rel="stylesheet" type="text/css" href="/dse/CW-MyGit/Advertising-Website/public/assets/css/layout/popup.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo URLROOT; ?>/assets/css/auth/register.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo URLROOT; ?>/assets/css/layout/popup.css">
 </head>
 
 <body>
 
-    <form method="POST" action="/dse/CW-MyGit/Advertising-Website/app/controllers/AuthController.php?action=register">
+    <form method="POST" action="<?php echo URLROOT; ?>/../app/controllers/AuthController.php?action=register">
         <div class="register-container">
             <div class="logo" align="center">
-                <img src="/dse/CW-MyGit/Advertising-Website/public/assets/images/BuySelLogo.png" alt="Logo"
-                    class="logo-image">
+                <img src="<?php echo URLROOT; ?>/assets/images/BuySelLogo.png" alt="Logo" class="logo-image">
             </div>
             <h2>Register</h2>
 
@@ -43,7 +43,7 @@ unset($_SESSION['error']);
             success: null
         };
     </script>
-    <script src="/dse/CW-MyGit/Advertising-Website/public/assets/js/popup.js"></script>
+    <script src="<?php echo URLROOT; ?>/assets/js/popup.js"></script>
 </body>
 
 </html>

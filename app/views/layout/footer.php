@@ -42,6 +42,22 @@
         </div>
     </footer>
 
+    <?php
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
+    $error = $_SESSION['error'] ?? null;
+    $success = $_SESSION['success'] ?? null;
+    unset($_SESSION['error']);
+    unset($_SESSION['success']);
+    ?>
+    <script>
+        window.authConfig = {
+            error: "<?php echo htmlspecialchars($error ?? ''); ?>",
+            success: "<?php echo htmlspecialchars($success ?? ''); ?>"
+        };
+    </script>
+
     <script src="<?php echo URLROOT; ?>/assets/js/popup.js"></script>
     <script src="<?php echo URLROOT; ?>/assets/js/generic.js"></script>
 

@@ -94,6 +94,7 @@ class AuthController
                 $_SESSION['user_id'] = $userData['id'];
                 $_SESSION['username'] = $userData['username'];
                 $_SESSION['user_role'] = $userData['role'];
+                $_SESSION['success'] = "Login successful.";
                 //echo "Login successful.";
                 header("Location: \dse\CW-MyGit\Advertising-Website\public\index.php");
                 exit();

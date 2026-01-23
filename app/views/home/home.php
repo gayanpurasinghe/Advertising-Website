@@ -8,8 +8,7 @@
             secure.</p>
 
         <div class="hero-search-container">
-            <form action="\dse/CW-MyGit\Advertising-Website\public\index.php" method="GET"
-                style="display: flex; width: 100%; margin: 0;">
+            <form action="<?php echo URLROOT; ?>/index.php" method="GET" style="display: flex; width: 100%; margin: 0;">
                 <input type="text" name="query" class="hero-search-input" placeholder="What are you looking for today?">
                 <button type="submit" class="hero-search-btn">Search</button>
             </form>

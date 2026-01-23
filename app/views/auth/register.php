@@ -8,41 +8,17 @@ unset($_SESSION['error']);
 
 <head>
     <title>Register</title>
-    <link rel="stylesheet" type="text/css" href="..\..\..\public\assets\css\auth\register.css">
+    <link rel="stylesheet" type="text/css" href="/dse/CW-MyGit/Advertising-Website/public/assets/css/auth/register.css">
+    <link rel="stylesheet" type="text/css" href="/dse/CW-MyGit/Advertising-Website/public/assets/css/layout/popup.css">
 </head>
 
 <body>
 
-    <?php if ($error): ?>
-        <div id="popupOverlay">
-            <div id="popupBox">
-
-                <?php if ($error === "username_taken"): ?>
-                    <h3>Registration Failed</h3>
-                    <p>Username is already taken.</p>
-                <?php elseif ($error === "empty_fields"): ?>
-                    <h3>Missing Information</h3>
-                    <p>Please fill in all fields.</p>
-                <?php elseif ($error === "username_too_short"): ?>
-                    <h3>Username Too Short</h3>
-                    <p>Username must be at least 5 characters long.</p>
-                <?php elseif ($error === "password_too_short"): ?>
-                    <h3>Password Too Short</h3>
-                    <p>Password must be at least 8 characters long.</p>
-                <?php elseif ($error === "invalid_email"): ?>
-                    <h3>Invalid Email</h3>
-                    <p>Invalid email format.</p>
-                <?php endif; ?>
-
-                <button onclick="closePopup()">OK</button>
-            </div>
-        </div>
-    <?php endif; ?>
-
-    <form method="POST" action="../../controllers/AuthController.php?action=register">
+    <form method="POST" action="/dse/CW-MyGit/Advertising-Website/app/controllers/AuthController.php?action=register">
         <div class="register-container">
             <div class="logo" align="center">
-                <img src="..\..\..\public\assets\images\BuySelLogo.png" alt="Logo" class="logo-image">
+                <img src="/dse/CW-MyGit/Advertising-Website/public/assets/images/BuySelLogo.png" alt="Logo"
+                    class="logo-image">
             </div>
             <h2>Register</h2>
 
@@ -60,11 +36,14 @@ unset($_SESSION['error']);
             <button type="reset">Clear</button>
         </div>
     </form>
+
     <script>
-        function closePopup() {
-            document.getElementById("popupOverlay").style.display = "none";
-        }
+        window.authConfig = {
+            error: "<?php echo htmlspecialchars($error ?? ''); ?>",
+            success: null
+        };
     </script>
+    <script src="/dse/CW-MyGit/Advertising-Website/public/assets/js/popup.js"></script>
 </body>
 
 </html>

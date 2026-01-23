@@ -19,7 +19,7 @@
         <a href="users.php" style="color: white; font-weight: bold;">Manage Users</a>
         <a href="reports.php">Reports</a>
         <a href="<?php echo URLROOT; ?>/index.php">Back to Site</a>
-        <a href="<?php echo URLROOT; ?>/../app/views/auth/logout.php">Logout</a>
+        <a href="javascript:void(0)" onclick="confirmLogout()">Logout</a>
     </div>
 
     <div class="main-content">

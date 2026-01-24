@@ -16,7 +16,8 @@ require_once __DIR__ . '/../../config/config.php';
     <link rel="stylesheet" type="text/css" href="<?php echo URLROOT; ?>/assets/css/layout/popup.css">
 </head>
 
-<body>
+<body data-error="<?php echo htmlspecialchars($error ?? ''); ?>"
+    data-success="<?php echo htmlspecialchars($success ?? ''); ?>">
 
     <form method="POST" action="<?php echo URLROOT; ?>/../app/controllers/AuthController.php?action=login">
         <div class="login-container">
@@ -39,12 +40,6 @@ require_once __DIR__ . '/../../config/config.php';
     </form>
 
 
-    <script>
-        window.authConfig = {
-            error: "<?php echo htmlspecialchars($error ?? ''); ?>",
-            success: "<?php echo htmlspecialchars($success ?? ''); ?>"
-        };
-    </script>
     <script src="<?php echo URLROOT; ?>/assets/js/popup.js"></script>
 
 </body>

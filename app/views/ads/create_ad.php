@@ -8,7 +8,13 @@
         <link rel="stylesheet" type="text/css" href="<?php echo URLROOT; ?>/assets/css/ads/create_ad.css">
     </head>
 
-<body>
+<body data-success="<?php echo isset($_SESSION['success']) ? htmlspecialchars($_SESSION['success']) : ''; ?>">
+    <?php
+    // Unset success after using it in the body attribute
+    if (isset($_SESSION['success'])) {
+        unset($_SESSION['success']);
+    }
+    ?>
     <?php
     if (session_status() == PHP_SESSION_NONE) {
         session_start();
@@ -48,25 +54,7 @@
         </form>
     </div>
 
-    <div class="popup-overlay" id="sucessModel" style="display: none;">
-        <div class="popup-content">
-            <span class="close-btn" id="closeBtn" onclick="closePopup()">&times;</span>
-            <h2>Advertisement Created Successfully!</h2>
-            <p id="popupMessage">Your advertisement has been created and is pending approval.</p>
-            <a href="<?php echo URLROOT; ?>/index.php" class="home-link">Go to Home</a>
-        </div>
-    </div>
-
     <script src="<?php echo URLROOT; ?>/assets/js/popup.js"></script>
-
-    <?php if (isset($_SESSION['success'])): ?>
-        <script>
-            showPopup("<?php echo $_SESSION['success']; ?>");
-        </script>
-        <?php
-        unset($_SESSION['success']);
-        ?>
-    <?php endif; ?>
 
 </body>
 

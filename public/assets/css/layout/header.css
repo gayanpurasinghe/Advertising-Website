@@ -111,3 +111,7 @@ body {
         display: none;
     }
 }
+
+.head.hidden {
+    transform: translateY(-100%);
+}

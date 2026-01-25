@@ -24,6 +24,10 @@
             <div class="footer-section">
                 <h3>Quick Links</h3>
                 <a href="<?php echo URLROOT; ?>/index.php">Home</a>
+                <?php if (!isset($_SESSION['username'])): ?>
+                    <a href="<?php echo URLROOT; ?>/../app/views/auth/login.php">Login</a>
+                    <a href="<?php echo URLROOT; ?>/../app/views/auth/register.php">Register</a>
+                <?php endif; ?>
                 <a href="#">About Us</a>
                 <a href="#">Contact Support</a>
                 <a href="#">Privacy Policy</a>

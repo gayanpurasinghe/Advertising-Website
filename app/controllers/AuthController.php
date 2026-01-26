@@ -10,14 +10,24 @@ class AuthController
     {
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $username = $_POST['username'];
-            $email = $_POST['email'];
+            $username = htmlspecialchars(trim($_POST['username']));
+            $email = htmlspecialchars(trim($_POST['email']));
             $password = $_POST['password'];
+            $confirm_password = $_POST['confirm_password'];
 
             /*
             if($this->userModel->findByUsername($username)) {
                 die("Username already exists.");
             }*/
+            if ($password !== $confirm_password) {
+                if (session_status() == PHP_SESSION_NONE) {
+                    session_start();
+                }
+                $_SESSION['error'] = "passwords_mismatch";
+                header("Location: ../views/auth/register.php");
+                exit();
+            }
+
             if (empty($username) || empty($email) || empty($password)) {
                 if (session_status() == PHP_SESSION_NONE) {
                     session_start();
@@ -79,7 +89,7 @@ class AuthController
     {
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $username = $_POST['username'];
+            $username = htmlspecialchars(trim($_POST['username']));
             $password = $_POST['password'];
             session_start();
 

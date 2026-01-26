@@ -2,9 +2,11 @@
 <html>
 
 <head>
-    <title>Header</title>
+    <title><?php echo isset($title) ? $title : 'BuySel.lk'; ?></title>
     <link rel="stylesheet" type="text/css" href="<?php echo URLROOT; ?>/assets/css/layout/header.css">
     <link rel="stylesheet" type="text/css" href="<?php echo URLROOT; ?>/assets/css/layout/popup.css">
+    <?php if (isset($extra_css))
+        echo $extra_css; ?>
 </head>
 
 <body>

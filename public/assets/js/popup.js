@@ -204,7 +204,39 @@ function handleAuthErrors(errorCode, successMessage = null) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+    // Check for inline window.authConfig (legacy support)
     if (window.authConfig) {
         handleAuthErrors(window.authConfig.error, window.authConfig.success);
+    }
+
+    // Check for data attributes on body
+    const body = document.body;
+    let error = body.getAttribute('data-error');
+    let success = body.getAttribute('data-success');
+
+    // Also check for hidden flash-messages div (common in partials like footer.php)
+    const flashMessages = document.getElementById('flash-messages');
+    if (flashMessages) {
+        if (!error && flashMessages.getAttribute('data-error')) {
+            error = flashMessages.getAttribute('data-error');
+        }
+        if (!success && flashMessages.getAttribute('data-success')) {
+            success = flashMessages.getAttribute('data-success');
+        }
+    }
+
+    if (error) {
+        // If the error matches a key in errorMessages, use that. 
+        // Otherwise, treat it as a direct message string (or fallback to default).
+        if (errorMessages[error]) {
+            handleAuthErrors(error);
+        } else {
+            // Treat as direct message if not a key
+            showPopup("Error", error, "error");
+        }
+    }
+
+    if (success) {
+        showPopup("Success", success, "success");
     }
 });

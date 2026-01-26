@@ -19,6 +19,7 @@ require_once __DIR__ . '/../layout/header.php';
 
         <label for="email">Email:</label>
         <input type="email" id="email" name="email">
+<body data-error="<?php echo htmlspecialchars($error ?? ''); ?>">
 
         <label for="password">Password:</label>
         <input type="password" id="password" name="password" required>
@@ -45,3 +46,13 @@ require_once __DIR__ . '/../layout/header.php';
 </script>
 
 <?php require_once __DIR__ . '/../layout/footer.php'; ?>
+            <button type="submit">Register</button>
+            <button type="button" onclick="window.location.href='login.php'">Login</button>
+            <button type="reset">Clear</button>
+        </div>
+    </form>
+
+    <script src="<?php echo URLROOT; ?>/assets/js/popup.js"></script>
+</body>
+
+</html>

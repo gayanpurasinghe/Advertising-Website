@@ -3,6 +3,8 @@ require_once __DIR__ . '/../../config/config.php';
 
 $title = 'Login';
 $extra_css = '<link rel="stylesheet" type="text/css" href="' . URLROOT . '/assets/css/auth/login.css">';
+<body data-error="<?php echo htmlspecialchars($error ?? ''); ?>"
+    data-success="<?php echo htmlspecialchars($success ?? ''); ?>">
 
 require_once __DIR__ . '/../layout/header.php';
 ?>
@@ -24,6 +26,7 @@ require_once __DIR__ . '/../layout/header.php';
         <button type="button" onclick="window.location.href='register.php'">Register</button>
         <button type="reset">Clear</button>
     </div>
+    <script src="<?php echo URLROOT; ?>/assets/js/popup.js"></script>
 
 </form>
 

@@ -70,7 +70,9 @@ $comments = Advertisement::getComments($con, $adId);
             </div>
 
             <div class="report-section">
-                <span id="reportBtn" class="report-link">Report this Ad</span>
+                <span id="reportBtn" class="report-link"
+                    data-user-logged-in="<?php echo isset($_SESSION['user_id']) ? 'true' : 'false'; ?>"
+                    data-login-url="<?php echo URLROOT; ?>/../app/views/auth/login.php">Report this Ad</span>
             </div>
 
             <div class="comments-section">
@@ -127,29 +129,7 @@ $comments = Advertisement::getComments($con, $adId);
 
     <?php include __DIR__ . '/../layout/footer.php'; ?>
 
-    <script>
-        var modal = document.getElementById("reportModal");
-        var btn = document.getElementById("reportBtn");
-        var span = document.getElementsByClassName("close")[0];
-
-        btn.onclick = function () {
-            <?php if (!isset($_SESSION['user_id'])): ?>
-                window.location.href = "<?php echo URLROOT; ?>/../app/views/auth/login.php";
-            <?php else: ?>
-                modal.style.display = "block";
-            <?php endif; ?>
-        }
-
-        span.onclick = function () {
-            modal.style.display = "none";
-        }
-
-        window.onclick = function (event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        }
-    </script>
+    <script src="<?php echo URLROOT; ?>/assets/js/ads/view_ad.js"></script>
 
 </body>
 

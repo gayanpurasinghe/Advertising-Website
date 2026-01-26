@@ -51,12 +51,9 @@
     unset($_SESSION['error']);
     unset($_SESSION['success']);
     ?>
-    <script>
-        window.authConfig = {
-            error: "<?php echo htmlspecialchars($error ?? ''); ?>",
-            success: "<?php echo htmlspecialchars($success ?? ''); ?>"
-        };
-    </script>
+    <div id="flash-messages" data-error="<?php echo htmlspecialchars($error ?? ''); ?>"
+        data-success="<?php echo htmlspecialchars($success ?? ''); ?>" style="display: none;">
+    </div>
 
     <script src="<?php echo URLROOT; ?>/assets/js/popup.js"></script>
     <script src="<?php echo URLROOT; ?>/assets/js/generic.js"></script>

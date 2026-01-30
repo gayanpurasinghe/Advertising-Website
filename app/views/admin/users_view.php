@@ -4,11 +4,9 @@
 
 <head>
     <title>Manage Users</title>
-
-    <head>
-        <title>Manage Users</title>
-        <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/admin/user_view.css">
-    </head>
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/admin/user_view.css">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/layout/popup.css">
+</head>
 
 <body>
 
@@ -80,6 +78,12 @@
             </tbody>
         </table>
     </div>
+    <script>
+        window.URLROOT = "<?php echo URLROOT; ?>";
+    </script>
+    <script src="<?php echo URLROOT; ?>/assets/js/popup.js"></script>
+    <script src="<?php echo URLROOT; ?>/assets/js/generic.js"></script>
+    <script src="<?php echo URLROOT; ?>/assets/js/script.js"></script>
 
 </body>
 

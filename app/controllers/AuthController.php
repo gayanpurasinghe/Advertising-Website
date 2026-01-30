@@ -102,6 +102,15 @@ class AuthController
             $con = Database::connect();
             $userData = User::login($con, $username, $password);
             if ($userData) {
+                if ($userData['status'] === 'banned') {
+                    if (session_status() == PHP_SESSION_NONE) {
+                        session_start();
+                    }
+                    $_SESSION['error'] = "Your account has been banned.";
+                    header("Location: ../views/auth/login.php");
+                    exit();
+                }
+
                 $_SESSION['user_id'] = $userData['id'];
                 $_SESSION['username'] = $userData['username'];
                 $_SESSION['user_role'] = $userData['role'];

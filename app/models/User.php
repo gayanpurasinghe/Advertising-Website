@@ -33,7 +33,7 @@ class User
     public static function login($con, $username, $inputPassword)
     {
 
-        $stmt = $con->prepare("SELECT id, username, password,role FROM users WHERE username = ? LIMIT 1");
+        $stmt = $con->prepare("SELECT id, username, password,role, status FROM users WHERE username = ? LIMIT 1");
         $stmt->bind_param("s", $username);
         $stmt->execute();
 

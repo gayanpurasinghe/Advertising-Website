@@ -4,11 +4,9 @@
 
 <head>
     <title>Manage Ads</title>
-
-    <head>
-        <title>Manage Ads</title>
-        <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/admin/manages_ads_view.css">
-    </head>
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/admin/manages_ads_view.css">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/layout/popup.css">
+</head>
 
 <body>
 
@@ -19,7 +17,7 @@
         <a href="users.php">Manage Users</a>
         <a href="reports.php">Reports</a>
         <a href="<?php echo URLROOT; ?>/index.php">Back to Site</a>
-        <a href="<?php echo URLROOT; ?>/../app/views/auth/logout.php">Logout</a>
+        <a href="javascript:void(0)" onclick="confirmLogout()">Logout</a>
     </div>
 
     <div class="main-content">
@@ -88,6 +86,12 @@
             </tbody>
         </table>
     </div>
+    <script>
+        window.URLROOT = "<?php echo URLROOT; ?>";
+    </script>
+    <script src="<?php echo URLROOT; ?>/assets/js/popup.js"></script>
+    <script src="<?php echo URLROOT; ?>/assets/js/generic.js"></script>
+    <script src="<?php echo URLROOT; ?>/assets/js/script.js"></script>
 
 </body>
 
